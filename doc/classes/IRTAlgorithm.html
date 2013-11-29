@@ -1,0 +1,1356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: IRTAlgorithm</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">IRTAlgorithm</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/irt_algorithm_rb.html">
+                irt_algorithm.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="rect" coords="5,5,104,53"      href="IRTAlgorithm.html" alt="IRTAlgorithm" />
+</map>
+<img src="../dot/f_1.png" usemap="#map" border="0" alt="dot/f_1.png">
+    </div>
+
+    <div id="description">
+      <ul>
+<li>irt_algorithm.rb
+
+</li>
+<li>Copyright (C) 2010 Embian Inc.
+
+<p>
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with This program. If not, see &lt;<a
+href="http://www.gnu.org/licenses">www.gnu.org/licenses</a>/&gt;.
+</p>
+</li>
+<li>The IRTEmAlgorithm class provides some options to estimate item
+paramters(i.g., difficulty, discrimet and guessing) and examinee&#8216;s
+theta
+
+</li>
+<li>Author: KyoungMo Yang(E-mail : mo@embian.com)
+
+</li>
+<li>Modified: 2010-11-05
+
+</li>
+<li>References: Irt_ruby module
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000052">_add_error_item_no</a>&nbsp;&nbsp;
+      <a href="#M000059">_estimates_EAP_theta</a>&nbsp;&nbsp;
+      <a href="#M000058">_estimates_MLE_theta</a>&nbsp;&nbsp;
+      <a href="#M000053">_estimates_initial_values</a>&nbsp;&nbsp;
+      <a href="#M000050">_init</a>&nbsp;&nbsp;
+      <a href="#M000051">_init_dichotomous_options</a>&nbsp;&nbsp;
+      <a href="#M000054">_mstep_item_param</a>&nbsp;&nbsp;
+      <a href="#M000056">_mstep_latent_dist</a>&nbsp;&nbsp;
+      <a href="#M000055">_mstep_latent_dist_moments</a>&nbsp;&nbsp;
+      <a href="#M000049">_setting_item_params</a>&nbsp;&nbsp;
+      <a href="#M000057">_standardize_scale</a>&nbsp;&nbsp;
+      <a href="#M000048">estimates_examinee_theta</a>&nbsp;&nbsp;
+      <a href="#M000047">estimates_item_params</a>&nbsp;&nbsp;
+      <a href="#M000046">new</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EAP</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;EAP&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MLE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;MLE&quot;</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">algorithm_to_estimates_theta</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">crit</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">em_iter_logs</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">error_items</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">estimates_dist</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">estimates_mean_of_dist</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">estimates_mean_sd_of_dist</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ignore_error</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">max_iter</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">max_optimize_iter</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">no_initial_estep</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">no_mstep_iter_error</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">scale_points</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">use_all</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">use_all_items</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000046" class="method-detail">
+        <a name="M000046"></a>
+
+        <div class="method-heading">
+          <a href="#M000046" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Constructs an instance of IRTAlgorithm class and initialzes options.
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * An instance of IRTAlgorithm class
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000046-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000046-source">
+<pre>
+    <span class="ruby-comment cmt"># File irt_algorithm.rb, line 41</span>
+41:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>()
+42:     <span class="ruby-comment cmt">#init opitons for algorithm</span>
+43:     <span class="ruby-identifier">_init</span>
+44:     <span class="ruby-comment cmt">#init options for dichotomous model</span>
+45:     <span class="ruby-identifier">_init_dichotomous_options</span>
+46:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000048" class="method-detail">
+        <a name="M000048"></a>
+
+        <div class="method-heading">
+          <a href="#M000048" class="method-signature">
+          <span class="method-name">estimates_examinee_theta</span><span class="method-args">(examinees, range_of_ability)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Estimates examinees' theta. This methods can used after estimates item parameters.
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [examinees] : array of IRTExaminees's instances
+ * [range_of_ability] : range of ability such as -4..4
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000048-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000048-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt_algorithm.rb, line 122</span>
+122:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">estimates_examinee_theta</span>(<span class="ruby-identifier">examinees</span>, <span class="ruby-identifier">range_of_ability</span>)
+123:     <span class="ruby-ivar">@estep_obj</span> = <span class="ruby-keyword kw">nil</span>
+124:     <span class="ruby-ivar">@estep_obj</span> = <span class="ruby-constant">Irt_ruby</span><span class="ruby-operator">::</span><span class="ruby-constant">Estep</span>.<span class="ruby-identifier">new</span>
+125:     <span class="ruby-ivar">@estep_obj</span>.<span class="ruby-identifier">compute</span>(<span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">true</span>)
+126:     <span class="ruby-ivar">@estep_obj</span> = <span class="ruby-keyword kw">nil</span>
+127:     <span class="ruby-keyword kw">if</span>(<span class="ruby-ivar">@algorithm_to_estimates_theta</span> <span class="ruby-operator">==</span> <span class="ruby-constant">EAP</span>)
+128:       <span class="ruby-identifier">_estimates_EAP_theta</span>(<span class="ruby-identifier">examinees</span>)
+129:     <span class="ruby-keyword kw">else</span>
+130:       <span class="ruby-identifier">_estimates_MLE_theta</span>(<span class="ruby-identifier">examinees</span>, <span class="ruby-identifier">range_of_ability</span>)
+131:     <span class="ruby-keyword kw">end</span>
+132:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000047" class="method-detail">
+        <a name="M000047"></a>
+
+        <div class="method-heading">
+          <a href="#M000047" class="method-signature">
+          <span class="method-name">estimates_item_params</span><span class="method-args">(items, use_dichotomous_model=true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Estimates items' params(i.e., difficulty, discriment, guessing)
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [items] : array of IRTItem's instances
+ * [use_dichotomous_model] : if true, estimates starting values. Default value is true.
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000047-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000047-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt_algorithm.rb, line 57</span>
+ 57:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">estimates_item_params</span>(<span class="ruby-identifier">items</span>, <span class="ruby-identifier">use_dichotomous_model</span>=<span class="ruby-keyword kw">true</span>)
+ 58:     <span class="ruby-ivar">@em_iter_logs</span>.<span class="ruby-identifier">clear</span>
+ 59:     
+ 60:     <span class="ruby-identifier">number_of_items</span> = <span class="ruby-identifier">items</span>.<span class="ruby-identifier">size</span>
+ 61:     <span class="ruby-comment cmt">#if &gt; 1, the latent distributions for each group can be estimated with estimates_dist option</span>
+ 62:     <span class="ruby-identifier">number_of_groups</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">num_groups</span>
+ 63:     
+ 64:     <span class="ruby-comment cmt">#Ruby wrapper for item_3PL_starting_values that handles errors</span>
+ 65:     <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">use_dichotomous_model</span>)
+ 66:       <span class="ruby-identifier">_estimates_initial_values</span>(<span class="ruby-identifier">number_of_items</span>)
+ 67:     <span class="ruby-keyword kw">end</span>
+ 68:     
+ 69:     <span class="ruby-comment cmt"># create estep object using all items</span>
+ 70:     <span class="ruby-ivar">@estep_obj</span> = <span class="ruby-constant">Irt_ruby</span><span class="ruby-operator">::</span><span class="ruby-constant">Estep</span>.<span class="ruby-identifier">new</span>
+ 71:     <span class="ruby-comment cmt"># first E-step</span>
+ 72:     <span class="ruby-keyword kw">if</span>(<span class="ruby-ivar">@no_initial_estep</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">false</span>)
+ 73:       <span class="ruby-ivar">@estep_obj</span>.<span class="ruby-identifier">compute</span>
+ 74:     <span class="ruby-keyword kw">end</span>
+ 75:     
+ 76:     <span class="ruby-comment cmt"># EM iterations</span>
+ 77:     <span class="ruby-identifier">rel_diff</span> = <span class="ruby-value">0</span>
+ 78:     <span class="ruby-value">1</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-ivar">@max_iter</span>){<span class="ruby-operator">|</span><span class="ruby-identifier">iter</span><span class="ruby-operator">|</span>
+ 79:       <span class="ruby-comment cmt"># M-step for item parameters</span>
+ 80:       <span class="ruby-identifier">rel_diff</span> = <span class="ruby-identifier">_mstep_item_param</span>([], <span class="ruby-ivar">@no_mstep_iter_error</span>)
+ 81:       <span class="ruby-comment cmt"># M-step for discrete latent variable distribution</span>
+ 82:       <span class="ruby-keyword kw">if</span>(<span class="ruby-ivar">@estimates_mean_of_dist</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@estimates_mean_sd_of_dist</span>)
+ 83:         <span class="ruby-comment cmt"># Estimate only mean and s.d. of distribution</span>
+ 84:         <span class="ruby-identifier">reld_diff</span> = <span class="ruby-identifier">_mstep_latent_dist_moments</span>(<span class="ruby-identifier">estep_obj</span>, <span class="ruby-ivar">@estimates_mean_of_dist</span>, <span class="ruby-ivar">@estimates_dist</span>)
+ 85:       <span class="ruby-keyword kw">else</span>
+ 86:         <span class="ruby-comment cmt"># Estimate latent distribution probabilities</span>
+ 87:         <span class="ruby-identifier">reld_diff</span> = <span class="ruby-identifier">_mstep_latent_dist</span>(<span class="ruby-ivar">@estep_obj</span>, <span class="ruby-identifier">number_of_items</span>, <span class="ruby-identifier">number_of_groups</span>, <span class="ruby-ivar">@estimates_dist</span>, <span class="ruby-ivar">@scale_points</span>)
+ 88:       <span class="ruby-keyword kw">end</span>
+ 89:       <span class="ruby-comment cmt"># next E-step</span>
+ 90:       <span class="ruby-identifier">log_like</span> = <span class="ruby-ivar">@estep_obj</span>.<span class="ruby-identifier">compute</span>
+ 91:       
+ 92:       <span class="ruby-comment cmt">#logging results of EM iterations</span>
+ 93:       <span class="ruby-ivar">@em_iter_logs</span>[<span class="ruby-identifier">iter</span>] = [<span class="ruby-identifier">rel_diff</span>, <span class="ruby-identifier">log_like</span>]
+ 94:       
+ 95:       <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">rel_diff</span> <span class="ruby-operator">&lt;</span> <span class="ruby-ivar">@crit</span>)
+ 96:         <span class="ruby-keyword kw">break</span>
+ 97:       <span class="ruby-keyword kw">end</span>
+ 98:     }
+ 99:     
+100:     <span class="ruby-comment cmt">#Report warning if convergence criterion not met</span>
+101:     <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">rel_diff</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@crit</span>)
+102:       <span class="ruby-comment cmt">#TODO : handling error or warning</span>
+103:       <span class="ruby-keyword kw">if</span>(<span class="ruby-operator">!</span> <span class="ruby-ivar">@no_mstep_iter_error</span>)
+104:         <span class="ruby-identifier">raise</span>(<span class="ruby-node">&quot;\nConvergence criterion not met after #{@max_iter} EM iterations\n&quot;</span>)
+105:       <span class="ruby-keyword kw">end</span>
+106:     <span class="ruby-keyword kw">end</span>
+107:     
+108:     <span class="ruby-comment cmt">#Setting item paramters</span>
+109:     <span class="ruby-identifier">_setting_item_params</span>(<span class="ruby-identifier">items</span>)
+110:     <span class="ruby-ivar">@estep_obj</span> = <span class="ruby-keyword kw">nil</span>
+111:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Private Instance methods</h3>
+
+      <div id="method-M000052" class="method-detail">
+        <a name="M000052"></a>
+
+        <div class="method-heading">
+          <a href="#M000052" class="method-signature">
+          <span class="method-name">_add_error_item_no</span><span class="method-args">(no)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000052-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000052-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt_algorithm.rb, line 235</span>
+235:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_add_error_item_no</span>(<span class="ruby-identifier">no</span>)
+236:     <span class="ruby-ivar">@error_items</span>[<span class="ruby-identifier">no</span>] = <span class="ruby-identifier">no</span>
+237:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000059" class="method-detail">
+        <a name="M000059"></a>
+
+        <div class="method-heading">
+          <a href="#M000059" class="method-signature">
+          <span class="method-name">_estimates_EAP_theta</span><span class="method-args">(examinees, estep_items=[])</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Estimates the EAP theta for each examinee.
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [examinees] : array of IRTExaminee
+ * [estep_items] : array of items' numbers for which n and r are updated. If nil is passed then n arnd r are updated for all items used in the E-step to compute examinee posterior distributions.
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000059-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000059-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt_algorithm.rb, line 519</span>
+519:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_estimates_EAP_theta</span>(<span class="ruby-identifier">examinees</span>, <span class="ruby-identifier">estep_items</span>=[])
+520:     <span class="ruby-identifier">examinees</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">examinee</span><span class="ruby-operator">|</span>
+521:       <span class="ruby-comment cmt">#Get examinee posterior mean (EAP estimate)</span>
+522:       <span class="ruby-identifier">eap</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">examinee_posterior_mean</span>(<span class="ruby-identifier">examinee</span>.<span class="ruby-identifier">no</span>)
+523:       <span class="ruby-identifier">examinee</span>.<span class="ruby-identifier">theta</span> = <span class="ruby-identifier">eap</span>
+524:     <span class="ruby-keyword kw">end</span>
+525:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000058" class="method-detail">
+        <a name="M000058"></a>
+
+        <div class="method-heading">
+          <a href="#M000058" class="method-signature">
+          <span class="method-name">_estimates_MLE_theta</span><span class="method-args">(examinees, range_of_ability)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Estimates the MLE theta for each examinee.
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [examinees] : array of IRTExaminee
+ * [range_of_ability] : range of ability such as -4..4
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000058-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000058-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt_algorithm.rb, line 499</span>
+499:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_estimates_MLE_theta</span>(<span class="ruby-identifier">examinees</span>, <span class="ruby-identifier">range_of_ability</span>)
+500:     <span class="ruby-comment cmt">#compute MLE estimates and number correct for each examinee</span>
+501:     <span class="ruby-identifier">examinees</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">examinee</span><span class="ruby-operator">|</span>
+502:       <span class="ruby-comment cmt">#Get examinee MLE estimate</span>
+503:       <span class="ruby-identifier">min_theta</span> = <span class="ruby-identifier">range_of_ability</span>[<span class="ruby-value">0</span>]
+504:       <span class="ruby-identifier">max_theta</span> = <span class="ruby-identifier">range_of_ability</span>[<span class="ruby-value">1</span>]
+505:       <span class="ruby-identifier">mle</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">examinee_theta_MLE</span>(<span class="ruby-identifier">examinee</span>.<span class="ruby-identifier">no</span>, <span class="ruby-identifier">min_theta</span>, <span class="ruby-identifier">max_theta</span>)
+506:       <span class="ruby-identifier">examinee</span>.<span class="ruby-identifier">theta</span> = <span class="ruby-identifier">mle</span>
+507:     <span class="ruby-keyword kw">end</span>
+508:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000053" class="method-detail">
+        <a name="M000053"></a>
+
+        <div class="method-heading">
+          <a href="#M000053" class="method-signature">
+          <span class="method-name">_estimates_initial_values</span><span class="method-args">(number_of_items)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Estimates initial values for dichotnomous model
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [number_of_items] : the number of items
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000053-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000053-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt_algorithm.rb, line 247</span>
+247:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_estimates_initial_values</span>(<span class="ruby-identifier">number_of_items</span>)
+248:     <span class="ruby-identifier">item_nos</span> = (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">number_of_items</span>).<span class="ruby-identifier">to_a</span>
+249:     <span class="ruby-keyword kw">begin</span>
+250:       <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">item_3PL_starting_values</span>(<span class="ruby-ivar">@use_all</span>, <span class="ruby-ivar">@use_all_items</span>, <span class="ruby-identifier">item_nos</span>)
+251:     <span class="ruby-keyword kw">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
+252:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{err} In item_3PL_starting_values&quot;</span>
+253:     <span class="ruby-keyword kw">end</span>
+254:     <span class="ruby-identifier">err_maxiter</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+255:     <span class="ruby-identifier">err_other</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+256:     <span class="ruby-identifier">item_nos</span>.<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">item_no</span><span class="ruby-operator">|</span>
+257:       <span class="ruby-identifier">err</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">mstep_message</span>(<span class="ruby-identifier">item_no</span>)
+258:       <span class="ruby-comment cmt">#TODO : what means &quot;err &lt; 0&quot;? and what means &quot;err &gt; 4&quot;?</span>
+259:       <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">err</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">err</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">4</span>)
+260:         <span class="ruby-identifier">_add_error_item_no</span>(<span class="ruby-identifier">item_no</span>)
+261:         <span class="ruby-comment cmt"># assumes err == 4 means maximum number of iterations exceeded</span>
+262:         <span class="ruby-comment cmt"># SEE : MStemIRT.h</span>
+263:         <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">err</span> <span class="ruby-operator">==</span> <span class="ruby-value">4</span>)
+264:           <span class="ruby-identifier">err_maxiter</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">item_no</span>
+265:         <span class="ruby-keyword kw">elsif</span>
+266:           <span class="ruby-identifier">err_other</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">item_no</span>
+267:         <span class="ruby-keyword kw">end</span>
+268:       <span class="ruby-keyword kw">end</span>
+269:     }
+270:     
+271:     <span class="ruby-keyword kw">if</span>(<span class="ruby-operator">!</span> <span class="ruby-identifier">err_maxiter</span>.<span class="ruby-identifier">empty?</span>)
+272:       <span class="ruby-comment cmt">#TODO : error handling</span>
+273:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Maximum number of iterations exceeded in which compute starting values for items : #{err_maxiter.join(&quot;, &quot;)}&quot;</span>
+274:     <span class="ruby-keyword kw">end</span>
+275:     
+276:     <span class="ruby-keyword kw">if</span>(<span class="ruby-operator">!</span> <span class="ruby-identifier">err_other</span>.<span class="ruby-identifier">empty?</span>)
+277:       <span class="ruby-comment cmt">#TODO : error handling</span>
+278:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Minimization defedure used to compute starting values failed for items : #{err_other.join(&quot;, &quot;)}&quot;</span>
+279:       <span class="ruby-keyword kw">if</span>(<span class="ruby-ivar">@ignore_error</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">false</span>)
+280:         <span class="ruby-identifier">raise</span>(<span class="ruby-node">&quot;Starting values not computed for #{e} items in command starting_values&quot;</span>)
+281:       <span class="ruby-keyword kw">else</span>
+282:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Starting values not computed for #{e} items in command starting_values&quot;</span>
+283:       <span class="ruby-keyword kw">end</span>
+284:     <span class="ruby-keyword kw">end</span>
+285:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000050" class="method-detail">
+        <a name="M000050"></a>
+
+        <div class="method-heading">
+          <a href="#M000050" class="method-signature">
+          <span class="method-name">_init</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Initializes default otpions
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000050-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000050-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt_algorithm.rb, line 167</span>
+167:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_init</span>
+168:     <span class="ruby-ivar">@error_items</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+169:     <span class="ruby-comment cmt">#logging result of em_steps</span>
+170:     <span class="ruby-ivar">@em_iter_logs</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+171:     
+172:     <span class="ruby-comment cmt">#algorithm for estimates examinee theta, possible values = [&quot;MLE&quot;, &quot;EAP&quot;]</span>
+173:     <span class="ruby-comment cmt">#default is MLE</span>
+174:     <span class="ruby-ivar">@algorithm_to_estimates_theta</span> = <span class="ruby-constant">EAP</span>
+175:     <span class="ruby-comment cmt"># maximum number of EM iterations, default is 20</span>
+176:     <span class="ruby-ivar">@max_iter</span> = <span class="ruby-value">20</span>
+177:     
+178:     <span class="ruby-comment cmt">#criterion, default = 0.001</span>
+179:     <span class="ruby-ivar">@crit</span> = <span class="ruby-value">0</span><span class="ruby-value">.001</span>
+180:     
+181:     <span class="ruby-comment cmt">#if this value is true and number of groups are more that one, </span>
+182:     <span class="ruby-comment cmt">#estimates latent variable distribution(of ability) in base group, default is false</span>
+183:     <span class="ruby-ivar">@estimates_dist</span> = <span class="ruby-keyword kw">false</span>
+184:     
+185:     <span class="ruby-comment cmt">#if true, points of ability(distribution) for the base group are scaled,</span>
+186:     <span class="ruby-comment cmt">#so the mean is 0 and s.d. is 1 after the weights(prob) are estimatesd in multiple group estimation.</span>
+187:     <span class="ruby-comment cmt">#The item parameter estimatess are also rescaled using the same scale transformation.</span>
+188:     <span class="ruby-comment cmt">#The option only has an effect if the -estimates_dist option is used.</span>
+189:     <span class="ruby-ivar">@scale_points</span> = <span class="ruby-keyword kw">false</span>
+190:     
+191:     <span class="ruby-comment cmt">#if true, do not compute one E-step before loop over EM interations</span>
+192:     <span class="ruby-ivar">@no_initial_estep</span> = <span class="ruby-keyword kw">false</span>
+193:     
+194:     <span class="ruby-comment cmt">#if true, an error of the maximum of iterations being exceeded in the optimization performed, </span>
+195:     <span class="ruby-comment cmt">#so the M-step is not considered an error and the calculation will continue.</span>
+196:     <span class="ruby-ivar">@no_mstep_iter_error</span> = <span class="ruby-keyword kw">true</span>
+197:     
+198:     <span class="ruby-comment cmt">#if true, the mean and s.d. of the latent distributions(of abilities) for all groups(except the base group)</span>
+199:     <span class="ruby-comment cmt">#are estimatesd rather than the discrete probabilities.</span>
+200:     <span class="ruby-comment cmt">#To use the option, the unique_points option must be used(in IRTModel class)</span>
+201:     <span class="ruby-ivar">@estimates_mean_sd_of_dist</span> = <span class="ruby-keyword kw">false</span>
+202:     
+203:     <span class="ruby-comment cmt">#if ture, the mean of the latent distributions(of abilities) for all groups(except base group)</span>
+204:     <span class="ruby-comment cmt">#are estimatesd rather than the discrete probabilities.</span>
+205:     <span class="ruby-comment cmt">#The s.d. is not estimatesd.</span>
+206:     <span class="ruby-comment cmt">#To use the option, the unique_points option must be used(in IRTModel class)</span>
+207:     <span class="ruby-ivar">@estimates_mean_of_dist</span> = <span class="ruby-keyword kw">false</span>
+208:     
+209:     <span class="ruby-comment cmt"># Set maximum number of iterations used by optimization procedure</span>
+210:     <span class="ruby-comment cmt"># in mstep for each item. default is 150 (SEE : Uncmin.h)</span>
+211:     <span class="ruby-ivar">@max_optimize_iter</span> = <span class="ruby-value">150</span>
+212:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000051" class="method-detail">
+        <a name="M000051"></a>
+
+        <div class="method-heading">
+          <a href="#M000051" class="method-signature">
+          <span class="method-name">_init_dichotomous_options</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Initializes default options for dichotomous model
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000051-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000051-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt_algorithm.rb, line 222</span>
+222:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_init_dichotomous_options</span>
+223:     <span class="ruby-comment cmt">#if ture, all examinees and items are used to compute initial thetas used for starting values,</span>
+224:     <span class="ruby-comment cmt">#even examinees who get all items correct or all items incorrect. default is false</span>
+225:     <span class="ruby-ivar">@use_all</span> = <span class="ruby-keyword kw">false</span>
+226:     
+227:     <span class="ruby-comment cmt">#if ture, using all items</span>
+228:     <span class="ruby-ivar">@use_all_items</span> = <span class="ruby-keyword kw">false</span>
+229:     
+230:     <span class="ruby-comment cmt">#if false, program will stop if an error occurred in computing start values,</span>
+231:     <span class="ruby-comment cmt">#otherwise the error is just reported and the program continues. default is false</span>
+232:     <span class="ruby-ivar">@ignore_error</span> = <span class="ruby-keyword kw">false</span>
+233:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000054" class="method-detail">
+        <a name="M000054"></a>
+
+        <div class="method-heading">
+          <a href="#M000054" class="method-signature">
+          <span class="method-name">_mstep_item_param</span><span class="method-args">(item_nos=[], no_max_iter_error=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Computes M-step for items.
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [item_nos] : array of item numbers(question_no or index) for items to perform M-steps. Default is empty that indicates using all items.
+ * [no_max_iter_error] : if true, an error in the optimization performed in the M-step is not considered an error and the calculation will continue.
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * [mstep_max_diff] : maximum relative difference in paramter from lat iteration to current iteration.
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000054-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000054-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt_algorithm.rb, line 296</span>
+296:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_mstep_item_param</span>(<span class="ruby-identifier">item_nos</span>=[], <span class="ruby-identifier">no_max_iter_error</span>=<span class="ruby-keyword kw">false</span>)
+297:     <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">item_nos</span>.<span class="ruby-identifier">empty?</span>)
+298:       <span class="ruby-identifier">error_item</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">mstep_items</span>(<span class="ruby-identifier">no_max_iter_error</span>)
+299:     <span class="ruby-keyword kw">else</span>
+300:       <span class="ruby-identifier">error_item</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">mstep_items</span>(<span class="ruby-identifier">no_max_iter_error</span>, <span class="ruby-identifier">item_nos</span>)
+301:     <span class="ruby-keyword kw">end</span>
+302:     <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">error_item</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+303:       <span class="ruby-identifier">message</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">mstep_message</span>(<span class="ruby-identifier">error_item</span>)
+304:       <span class="ruby-identifier">raise</span>(<span class="ruby-node">&quot;M-step failed for item #{error_item} with error number #{message}&quot;</span>)
+305:     <span class="ruby-keyword kw">end</span>
+306:     
+307:     <span class="ruby-comment cmt">#Display item number for which maximum number of iterations was exceeded</span>
+308:     <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">error_item</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>)
+309:       <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">item_nos</span>.<span class="ruby-identifier">empty?</span>)
+310:         <span class="ruby-identifier">number_of_items</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">num_items</span>
+311:         <span class="ruby-value">1</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-identifier">number_of_items</span>){<span class="ruby-operator">|</span><span class="ruby-identifier">item_no</span><span class="ruby-operator">|</span> <span class="ruby-identifier">item_nos</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">item_no</span>}
+312:       <span class="ruby-keyword kw">end</span>
+313:       <span class="ruby-identifier">err_maxiter</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+314:       <span class="ruby-identifier">item_nos</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item_no</span><span class="ruby-operator">|</span>
+315:         <span class="ruby-identifier">err</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">mstep_message</span>(<span class="ruby-identifier">item_no</span>)
+316:         <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">err</span> <span class="ruby-operator">==</span> <span class="ruby-value">4</span>)
+317:           <span class="ruby-identifier">_add_error_item_no</span>(<span class="ruby-identifier">item_no</span>)
+318:           <span class="ruby-identifier">err_maxiter</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">item_no</span>
+319:         <span class="ruby-keyword kw">end</span>
+320:       <span class="ruby-keyword kw">end</span>
+321:       
+322:       <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">err_maxiter</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+323:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Maximum nuber of iterations exceeded in M-step calculation for items: #{err_maxiter.join(&quot;, &quot;)}&quot;</span>
+324:       <span class="ruby-keyword kw">end</span>      
+325:     <span class="ruby-keyword kw">end</span>
+326:     <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">mstep_max_diff</span>()
+327:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000056" class="method-detail">
+        <a name="M000056"></a>
+
+        <div class="method-heading">
+          <a href="#M000056" class="method-signature">
+          <span class="method-name">_mstep_latent_dist</span><span class="method-args">(estep_obj, number_of_items, number_of_groups=1, estim_base_group=false, scale_points=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Computes M-step for latent distributions from last iteration to current iteration.
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [estep_obj] : an instance of Irt_ruby::Estep
+ * [number_of_items] : the number of items
+ * [number_of_groups] : the number of groups. default value is one.
+ * [estim_base_group] :  If true, estimates latent distribution for the base group.
+ * [scale_points] :  If true then scale points of latent distribution so mean and s.d. in base group are 0 and 1, and correspondingly scale item parameter estimatess in multiple group estimation.  This option only has an effect when the &quot;estim_base_group&quot; option is used.
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * [reld_diff] : maximum relative difference in latent distribution probabilities.
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000056-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000056-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt_algorithm.rb, line 423</span>
+423:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_mstep_latent_dist</span>(<span class="ruby-identifier">estep_obj</span>, <span class="ruby-identifier">number_of_items</span>, <span class="ruby-identifier">number_of_groups</span>=<span class="ruby-value">1</span>, <span class="ruby-identifier">estim_base_group</span>=<span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">scale_points</span>=<span class="ruby-keyword kw">false</span>)
+424:     <span class="ruby-identifier">reld_diff</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+425:     <span class="ruby-identifier">base_group</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">get_base_group</span>()
+426:     
+427:     <span class="ruby-comment cmt">#Compute M-step for discrete latent variable distribution in base group</span>
+428:     <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">estim_base_group</span>)
+429:       <span class="ruby-identifier">reld_diff</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">mstep_dist</span>(<span class="ruby-identifier">estep_obj</span>, <span class="ruby-identifier">base_group</span>)
+430:       
+431:       <span class="ruby-comment cmt">#Transform latent variable scale so that mean and s.d. of latent variable for base group are 0 and 1.</span>
+432:       <span class="ruby-comment cmt">#The points of the latent variable distribution are changed to reflect the new scale as are the item</span>
+433:       <span class="ruby-comment cmt">#paramter estimatess.</span>
+434:       <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">scale_points</span>)
+435:         <span class="ruby-identifier">_standardize_scale</span>(<span class="ruby-value">0</span><span class="ruby-value">.0</span>, <span class="ruby-value">1.0</span>, <span class="ruby-identifier">number_of_items</span>, <span class="ruby-identifier">base_group</span>)
+436:       <span class="ruby-keyword kw">end</span>
+437:     <span class="ruby-keyword kw">else</span>
+438:       <span class="ruby-identifier">reld_diff</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">-1.0</span>
+439:     <span class="ruby-keyword kw">end</span>
+440:     
+441:     <span class="ruby-comment cmt">#Estimate distributions for group 2 through last group</span>
+442:     <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">number_of_groups</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>)
+443:       <span class="ruby-value">1</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-identifier">number_of_groups</span>){<span class="ruby-operator">|</span><span class="ruby-identifier">group</span><span class="ruby-operator">|</span>
+444:         <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">base_group</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">group</span>)
+445:           <span class="ruby-identifier">t_diff</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">mstep_dist</span>(<span class="ruby-identifier">estep_obj</span>, <span class="ruby-identifier">group</span>)
+446:           <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">t_diff</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">reld_diff</span>[<span class="ruby-value">0</span>])
+447:             <span class="ruby-identifier">reld_diff</span>[<span class="ruby-value">0</span>] = <span class="ruby-identifier">t_diff</span>
+448:           <span class="ruby-keyword kw">end</span>
+449:         <span class="ruby-keyword kw">end</span>
+450:       }
+451:     <span class="ruby-keyword kw">end</span>    
+452:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">reld_diff</span>        
+453:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000055" class="method-detail">
+        <a name="M000055"></a>
+
+        <div class="method-heading">
+          <a href="#M000055" class="method-signature">
+          <span class="method-name">_mstep_latent_dist_moments</span><span class="method-args">(estep_obj, mean_only, estim_base_group)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Computes M-step to estimates mean and standard deviation of latent distributions.
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [estep_obj] : an instance of Irt_ruby::Estep
+ * [mean_only] : if true, only estimates the means of latent distribution and do not estimates the standard deviations.
+ * [estim_base_group] :  - if ture, estimates latent distribution for the base group.
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * [[mean_diff, sd_diff]] : maximum relative difference in the latent distribution means from last iteration to current iteration.
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000055-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000055-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt_algorithm.rb, line 339</span>
+339:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_mstep_latent_dist_moments</span>(<span class="ruby-identifier">estep_obj</span>, <span class="ruby-identifier">mean_only</span>, <span class="ruby-identifier">estim_base_group</span>)
+340:     <span class="ruby-comment cmt"># If only one group then there is nothing to estimates</span>
+341:     <span class="ruby-identifier">num_groups</span> = <span class="ruby-ivar">@number_of_groups</span>
+342:     <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">num_groups</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>)
+343:       <span class="ruby-keyword kw">return</span> []
+344:     <span class="ruby-keyword kw">end</span>
+345:     
+346:     <span class="ruby-comment cmt">#initialize differences</span>
+347:     <span class="ruby-identifier">mean_diff</span> = <span class="ruby-value">0</span>
+348:     <span class="ruby-identifier">sd_diff</span> = <span class="ruby-value">0</span>
+349:     
+350:     <span class="ruby-comment cmt">#list of indices for latent distributions points</span>
+351:     <span class="ruby-identifier">num_latent_dist_points</span> = <span class="ruby-ivar">@points_of_ability</span>
+352:     <span class="ruby-identifier">point_list</span> = (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">num_latent_dist_points</span>).<span class="ruby-identifier">to_a</span>
+353:     
+354:     <span class="ruby-comment cmt">#Compute M-step for discrete latent variable distribution in each group</span>
+355:     <span class="ruby-identifier">base_group</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">get_base_group</span>()
+356:     <span class="ruby-value">1</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-identifier">num_groups</span>){<span class="ruby-operator">|</span><span class="ruby-identifier">group</span><span class="ruby-operator">|</span>
+357:       <span class="ruby-comment cmt">#skip base group when estim_base_group is false</span>
+358:       <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">estim_base_group</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">group</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">base_group</span>)
+359:         <span class="ruby-comment cmt">#Compute moments based on original points</span>
+360:         <span class="ruby-identifier">moments</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">dist_mean_sd</span>(<span class="ruby-identifier">group</span>)
+361:         <span class="ruby-identifier">old_mean</span> = <span class="ruby-identifier">moments</span>[<span class="ruby-value">0</span>]
+362:         <span class="ruby-identifier">old_sd</span> = <span class="ruby-identifier">moments</span>[<span class="ruby-value">1</span>]
+363:         
+364:         <span class="ruby-comment cmt">#store original probabilities for group</span>
+365:         <span class="ruby-identifier">old_prob</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">dist_get_probs</span>(<span class="ruby-identifier">group</span>)
+366:         
+367:         <span class="ruby-comment cmt">#M-step for probabilities</span>
+368:         <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">mstep_dist</span>(<span class="ruby-identifier">estep_obj</span>, <span class="ruby-identifier">group</span>)
+369:         
+370:         <span class="ruby-comment cmt">#Compute moments based on new probabilities</span>
+371:         <span class="ruby-identifier">moments</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">dist_mean_sd</span>(<span class="ruby-identifier">group</span>)
+372:         <span class="ruby-identifier">mean</span> = <span class="ruby-identifier">moments</span>[<span class="ruby-value">0</span>]
+373:         <span class="ruby-identifier">sd</span> = <span class="ruby-identifier">moments</span>[<span class="ruby-value">1</span>]
+374:         
+375:         <span class="ruby-comment cmt">#Compute difference in old and new mean</span>
+376:         <span class="ruby-identifier">diff</span> = (<span class="ruby-identifier">mean</span><span class="ruby-operator">-</span><span class="ruby-identifier">old_mean</span>).<span class="ruby-identifier">abs</span>
+377:         <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">diff</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">mean_diff</span>)
+378:           <span class="ruby-identifier">mean_diff</span> = <span class="ruby-identifier">diff</span>
+379:         <span class="ruby-keyword kw">end</span>
+380:         
+381:         <span class="ruby-comment cmt">#Compute difference in old and new s.d.</span>
+382:         <span class="ruby-keyword kw">if</span>(<span class="ruby-operator">!</span><span class="ruby-identifier">mean_only</span>)
+383:           <span class="ruby-identifier">diff</span> = (<span class="ruby-identifier">sd</span><span class="ruby-operator">-</span><span class="ruby-identifier">old_sd</span>).<span class="ruby-identifier">abs</span>
+384:           <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">diff</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sd_diff</span>)
+385:             <span class="ruby-identifier">sd_diff</span> = <span class="ruby-identifier">diff</span>
+386:           <span class="ruby-keyword kw">end</span>
+387:         <span class="ruby-keyword kw">end</span>
+388:         
+389:         <span class="ruby-comment cmt">#Compute slope and intercept to transform points</span>
+390:         <span class="ruby-comment cmt">#so distribution has new mean and s.d.</span>
+391:         <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">mean_only</span>)
+392:           <span class="ruby-identifier">slop</span> = <span class="ruby-value">1.0</span>
+393:         <span class="ruby-keyword kw">else</span>
+394:           <span class="ruby-identifier">slop</span> = <span class="ruby-identifier">sd</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">old_sd</span>
+395:         <span class="ruby-keyword kw">end</span>
+396:         <span class="ruby-identifier">intercept</span> = <span class="ruby-identifier">mean</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">slope</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">old_mean</span>
+397:         
+398:         <span class="ruby-comment cmt">#Transform points for group distribution</span>
+399:         <span class="ruby-identifier">point_list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">point</span><span class="ruby-operator">|</span>
+400:           <span class="ruby-identifier">old_point</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">dist_get_point</span>(<span class="ruby-identifier">point</span>, <span class="ruby-identifier">group</span>)
+401:           <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">dist_set_point</span>(<span class="ruby-identifier">point</span>, <span class="ruby-identifier">old_point</span><span class="ruby-operator">*</span><span class="ruby-identifier">slope</span><span class="ruby-operator">+</span><span class="ruby-identifier">intercept</span>, <span class="ruby-identifier">group</span>)
+402:         <span class="ruby-keyword kw">end</span>
+403:         
+404:         <span class="ruby-comment cmt">#Restore original probabilities for group</span>
+405:         <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">dist_set_probs</span>(<span class="ruby-identifier">old_prob</span>, <span class="ruby-identifier">group</span>)
+406:       <span class="ruby-keyword kw">end</span>
+407:     }
+408:     <span class="ruby-keyword kw">return</span> [<span class="ruby-identifier">mean_diff</span>, <span class="ruby-identifier">sd_diff</span>]
+409:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000049" class="method-detail">
+        <a name="M000049"></a>
+
+        <div class="method-heading">
+          <a href="#M000049" class="method-signature">
+          <span class="method-name">_setting_item_params</span><span class="method-args">(items)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Setting item paramters for each item
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [items] : array of IRTItem's instances
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000049-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000049-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt_algorithm.rb, line 147</span>
+147:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_setting_item_params</span>(<span class="ruby-identifier">items</span>)
+148:     <span class="ruby-identifier">items</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
+149:       <span class="ruby-identifier">params</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">item_get_all_params</span>(<span class="ruby-identifier">item</span>.<span class="ruby-identifier">no</span>)
+150:       <span class="ruby-comment cmt">#discriment</span>
+151:       <span class="ruby-identifier">item</span>.<span class="ruby-identifier">irt_a</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>]
+152:       <span class="ruby-comment cmt">#difficulty</span>
+153:       <span class="ruby-identifier">item</span>.<span class="ruby-identifier">irt_b</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">1</span>]
+154:       <span class="ruby-comment cmt">#guessing</span>
+155:       <span class="ruby-identifier">item</span>.<span class="ruby-identifier">irt_c</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">2</span>]
+156:     <span class="ruby-keyword kw">end</span>
+157:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000057" class="method-detail">
+        <a name="M000057"></a>
+
+        <div class="method-heading">
+          <a href="#M000057" class="method-signature">
+          <span class="method-name">_standardize_scale</span><span class="method-args">(mean, sd, number_of_items, group=1, ignore_prior=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Standardize scale of latent variable so that the mean and standard deviation are equal to specific values in one examinee group. Item parameters for all items are correspondingly transformed. If different latent variable points are used for different groups,  the points for all groups are transformed to be on the new scale.
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [mean] : Target mean of latent variable distribution.
+ * [sd] :
+ * [number_of_items] : the number of items
+ * [group] :  Number of group in which mean and s.d. of latent variable distribution should be equal to target values. (1, 2, ...)
+ * [ignore_prior] :  If true then do not report an error if a transformed parameter has zero density in the prior used for that parameter.
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * [[slope, intercept]] : slope and intercept of scale transformation.
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000057-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000057-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt_algorithm.rb, line 467</span>
+467:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_standardize_scale</span>(<span class="ruby-identifier">mean</span>, <span class="ruby-identifier">sd</span>, <span class="ruby-identifier">number_of_items</span>, <span class="ruby-identifier">group</span>=<span class="ruby-value">1</span>, <span class="ruby-identifier">ignore_prior</span>=<span class="ruby-keyword kw">false</span>)
+468:     <span class="ruby-comment cmt">#check for valid s.d.</span>
+469:     <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">sd</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">0</span><span class="ruby-value">.0</span>)
+470:       <span class="ruby-identifier">raise</span>(<span class="ruby-node">&quot;Invalid s.d. : #{sd}&quot;</span>)
+471:     <span class="ruby-keyword kw">end</span>
+472:     
+473:     <span class="ruby-comment cmt">#Find transformation of points of latent distribution that will give the specified mean and s.d.</span>
+474:     <span class="ruby-identifier">trans</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">dist_scale</span>(<span class="ruby-identifier">mean</span>, <span class="ruby-identifier">sd</span>, <span class="ruby-identifier">group</span>)
+475:     <span class="ruby-identifier">slope</span> = <span class="ruby-identifier">trans</span>[<span class="ruby-value">0</span>]
+476:     <span class="ruby-identifier">intercept</span> = <span class="ruby-identifier">trans</span>[<span class="ruby-value">1</span>]
+477:     
+478:     <span class="ruby-comment cmt">#Transform item parameters using scale transformation computed for points of latent variable distribution</span>
+479:     <span class="ruby-value">1</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-identifier">number_of_items</span>){<span class="ruby-operator">|</span><span class="ruby-identifier">item_no</span><span class="ruby-operator">|</span>
+480:       <span class="ruby-keyword kw">if</span>(<span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">item_scale_params</span>(<span class="ruby-identifier">item_no</span>, <span class="ruby-identifier">slope</span>, <span class="ruby-identifier">intercept</span>, <span class="ruby-identifier">ignore_prior</span>) <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>)
+481: <span class="ruby-comment cmt">#        raise(&quot;Transformation would result in an invalid paramter for item #{item_no}&quot;)</span>
+482:         <span class="ruby-identifier">puts</span> (<span class="ruby-node">&quot;Transformation would result in an invalid paramter for item #{item_no}&quot;</span>)
+483:       <span class="ruby-keyword kw">end</span>
+484:     }
+485:     
+486:     <span class="ruby-comment cmt">#Return slope and intercept of scale transformation</span>
+487:     <span class="ruby-keyword kw">return</span> [<span class="ruby-identifier">slope</span>, <span class="ruby-identifier">intercept</span>]
+488:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

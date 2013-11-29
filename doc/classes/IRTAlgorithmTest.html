@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: IRTAlgorithmTest</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">IRTAlgorithmTest</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/test/irt_algorithm_test_rb.html">
+                test/irt_algorithm_test.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Test::Unit::TestCase
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="rect" coords="13,101,136,149"      href="IRTAlgorithmTest.html" alt="IRTAlgorithmTest" />
+  <area shape="rect" coords="5,5,144,53"      href="Test/Unit/TestCase.html" alt="Test::Unit::TestCase" />
+</map>
+<img src="../dot/f_13.png" usemap="#map" border="0" alt="dot/f_13.png">
+    </div>
+
+    <div id="description">
+      <ul>
+<li>irt_algorithm_test.rb
+
+</li>
+<li>Copyright (C) 2010 Embian Inc.
+
+<p>
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with This program. If not, see &lt;<a
+href="http://www.gnu.org/licenses">www.gnu.org/licenses</a>/&gt;.
+</p>
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000029">setup</a>&nbsp;&nbsp;
+      <a href="#M000030">teardown</a>&nbsp;&nbsp;
+      <a href="#M000032">test_estimates_examinee_theta</a>&nbsp;&nbsp;
+      <a href="#M000031">test_estimates_item_params</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000029" class="method-detail">
+        <a name="M000029"></a>
+
+        <div class="method-heading">
+          <a href="#M000029" class="method-signature">
+          <span class="method-name">setup</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000029-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000029-source">
+<pre>
+    <span class="ruby-comment cmt"># File test/irt_algorithm_test.rb, line 23</span>
+23:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
+24:     <span class="ruby-ivar">@expected_item_params</span> = [
+25:       {<span class="ruby-identifier">:irt_a=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">1.0961847175</span>, <span class="ruby-identifier">:irt_b=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">-0</span><span class="ruby-value">.9685120336</span>, <span class="ruby-identifier">:irt_c=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span><span class="ruby-value">.2210026076</span>},
+26:       {<span class="ruby-identifier">:irt_a=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span><span class="ruby-value">.5649699880</span>, <span class="ruby-identifier">:irt_b=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">-0</span><span class="ruby-value">.5473557856</span>, <span class="ruby-identifier">:irt_c=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span><span class="ruby-value">.2289350984</span>},
+27:       {<span class="ruby-identifier">:irt_a=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">1.0276089825</span>, <span class="ruby-identifier">:irt_b=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span><span class="ruby-value">.1696606494</span>,  <span class="ruby-identifier">:irt_c=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span><span class="ruby-value">.2209021813</span>},
+28:       {<span class="ruby-identifier">:irt_a=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span><span class="ruby-value">.9774353728</span>, <span class="ruby-identifier">:irt_b=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">-0</span><span class="ruby-value">.3342768143</span>, <span class="ruby-identifier">:irt_c=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span><span class="ruby-value">.2232607784</span>},
+29:       {<span class="ruby-identifier">:irt_a=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">1.1390936486</span>, <span class="ruby-identifier">:irt_b=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">-0</span><span class="ruby-value">.7270930940</span>, <span class="ruby-identifier">:irt_c=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span><span class="ruby-value">.2174390876</span>}
+30:     ]
+31: 
+32:     <span class="ruby-ivar">@expected_thetas</span> = 
+33:     [
+34:       <span class="ruby-value">0</span><span class="ruby-value">.8705128329</span>,
+35:       <span class="ruby-value">-0</span><span class="ruby-value">.3510661255</span>,
+36:       <span class="ruby-value">0</span><span class="ruby-value">.4103015636</span>,
+37:       <span class="ruby-value">-0</span><span class="ruby-value">.7703148359</span>,
+38:       <span class="ruby-value">0</span><span class="ruby-value">.8705128329</span>,
+39:       <span class="ruby-value">-0</span><span class="ruby-value">.1612686685</span>,
+40:       <span class="ruby-value">-0</span><span class="ruby-value">.5311113233</span>,
+41:       <span class="ruby-value">0</span><span class="ruby-value">.8705128329</span>,
+42:       <span class="ruby-value">0</span><span class="ruby-value">.3801369220</span>,
+43:       <span class="ruby-value">-1.5823751989</span>,
+44:     ]
+45: 
+46:     <span class="ruby-identifier">answers</span> = [<span class="ruby-value str">'A'</span>, <span class="ruby-value str">'B'</span>, <span class="ruby-value str">'C'</span>, <span class="ruby-value str">'D'</span>]
+47:     <span class="ruby-ivar">@responses</span> = [
+48:       [<span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>],
+49:       [<span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">1</span>],
+50:       [<span class="ruby-value">1</span>, <span class="ruby-value">0</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>],
+51:       [<span class="ruby-value">0</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">0</span>],
+52:       [<span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>],
+53:       [<span class="ruby-value">1</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>],
+54:       [<span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">-1</span>],
+55:       [<span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>],
+56:       [<span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">-1</span>, <span class="ruby-value">-1</span>, <span class="ruby-value">-1</span>],
+57:       [<span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>]
+58:     ]
+59:     
+60:     <span class="ruby-ivar">@items</span> = []
+61:     <span class="ruby-value">5</span>.<span class="ruby-identifier">times</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">no</span><span class="ruby-operator">|</span>
+62:       <span class="ruby-identifier">item</span> = <span class="ruby-constant">IRTItem</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;id##{no}&quot;</span>)
+63:       <span class="ruby-identifier">item</span>.<span class="ruby-identifier">answer</span> = <span class="ruby-identifier">answers</span>[<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">answers</span>.<span class="ruby-identifier">size</span>)]
+64:       <span class="ruby-identifier">item</span>.<span class="ruby-identifier">no</span> = <span class="ruby-identifier">no</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>
+65:       <span class="ruby-ivar">@items</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">item</span>
+66:     <span class="ruby-keyword kw">end</span>
+67: 
+68:     <span class="ruby-ivar">@examinees</span> = []
+69:     <span class="ruby-value">10</span>.<span class="ruby-identifier">times</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">no</span><span class="ruby-operator">|</span>
+70:       <span class="ruby-ivar">@examinees</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">IRTExaminee</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;id##{no}&quot;</span>, <span class="ruby-ivar">@responses</span>[<span class="ruby-identifier">no</span>], <span class="ruby-node">&quot;00000-0000#{no}&quot;</span>)
+71:     <span class="ruby-keyword kw">end</span>
+72:     
+73:     <span class="ruby-comment cmt">#initialize</span>
+74:     <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">new_items_dist</span>(<span class="ruby-ivar">@expected_item_params</span>.<span class="ruby-identifier">size</span>, <span class="ruby-value">40</span>, <span class="ruby-value">1</span>, [<span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>], [<span class="ruby-value">-4</span>, <span class="ruby-value">4</span>], <span class="ruby-keyword kw">false</span>)
+75:     <span class="ruby-ivar">@examinees</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">examinee</span><span class="ruby-operator">|</span>
+76:       <span class="ruby-identifier">no</span> = (<span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">examinees_count</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">to_i</span>
+77:       <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">add_examinee</span>(<span class="ruby-identifier">examinee</span>.<span class="ruby-identifier">responses</span>, <span class="ruby-identifier">examinee</span>.<span class="ruby-identifier">group</span>)
+78:       <span class="ruby-identifier">examinee</span>.<span class="ruby-identifier">no</span> = <span class="ruby-identifier">no</span>
+79:     <span class="ruby-keyword kw">end</span>
+80:     
+81:     <span class="ruby-ivar">@algorithm</span> = <span class="ruby-constant">IRTAlgorithm</span>.<span class="ruby-identifier">new</span>
+82:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000030" class="method-detail">
+        <a name="M000030"></a>
+
+        <div class="method-heading">
+          <a href="#M000030" class="method-signature">
+          <span class="method-name">teardown</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000030-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000030-source">
+<pre>
+    <span class="ruby-comment cmt"># File test/irt_algorithm_test.rb, line 84</span>
+84:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
+85:     <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">delete_items_dist</span>
+86:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000032" class="method-detail">
+        <a name="M000032"></a>
+
+        <div class="method-heading">
+          <a href="#M000032" class="method-signature">
+          <span class="method-name">test_estimates_examinee_theta</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000032-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000032-source">
+<pre>
+     <span class="ruby-comment cmt"># File test/irt_algorithm_test.rb, line 106</span>
+106:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_estimates_examinee_theta</span>
+107:     <span class="ruby-identifier">use_dichotomous_model</span>=<span class="ruby-keyword kw">true</span>
+108:     <span class="ruby-ivar">@algorithm</span>.<span class="ruby-identifier">estimates_item_params</span>(<span class="ruby-ivar">@items</span>, <span class="ruby-identifier">use_dichotomous_model</span>)
+109:     
+110:     <span class="ruby-ivar">@examinees</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">examinee</span><span class="ruby-operator">|</span>
+111:       <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">0</span><span class="ruby-value">.0</span>, <span class="ruby-identifier">examinee</span>.<span class="ruby-identifier">theta</span>)
+112:     <span class="ruby-keyword kw">end</span>
+113:     
+114:     <span class="ruby-ivar">@algorithm</span>.<span class="ruby-identifier">estimates_examinee_theta</span>(<span class="ruby-ivar">@examinees</span>, [<span class="ruby-value">-4</span>, <span class="ruby-value">4</span>])
+115:     
+116:     <span class="ruby-ivar">@examinees</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">examinee</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+117:       <span class="ruby-identifier">assert_equal</span>(<span class="ruby-ivar">@expected_thetas</span>[<span class="ruby-identifier">i</span>], (<span class="ruby-value str">&quot;%.10f&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">examinee</span>.<span class="ruby-identifier">theta</span>).<span class="ruby-identifier">to_f</span>)
+118:     <span class="ruby-keyword kw">end</span>
+119:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000031" class="method-detail">
+        <a name="M000031"></a>
+
+        <div class="method-heading">
+          <a href="#M000031" class="method-signature">
+          <span class="method-name">test_estimates_item_params</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000031-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000031-source">
+<pre>
+     <span class="ruby-comment cmt"># File test/irt_algorithm_test.rb, line 88</span>
+ 88:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_estimates_item_params</span>
+ 89:     <span class="ruby-ivar">@items</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
+ 90:       <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">0</span><span class="ruby-value">.0</span>, <span class="ruby-identifier">item</span>.<span class="ruby-identifier">irt_a</span>)
+ 91:       <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">0</span><span class="ruby-value">.0</span>, <span class="ruby-identifier">item</span>.<span class="ruby-identifier">irt_b</span>)
+ 92:       <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">0</span><span class="ruby-value">.0</span>, <span class="ruby-identifier">item</span>.<span class="ruby-identifier">irt_c</span>)
+ 93:     <span class="ruby-keyword kw">end</span>
+ 94:     
+ 95:     <span class="ruby-identifier">use_dichotomous_model</span>=<span class="ruby-keyword kw">true</span>
+ 96:     <span class="ruby-ivar">@algorithm</span>.<span class="ruby-identifier">estimates_item_params</span>(<span class="ruby-ivar">@items</span>, <span class="ruby-identifier">use_dichotomous_model</span>)
+ 97:     
+ 98:     <span class="ruby-ivar">@items</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+ 99:       <span class="ruby-identifier">params</span> = <span class="ruby-ivar">@expected_item_params</span>[<span class="ruby-identifier">i</span>]
+100:       <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:irt_a</span>], (<span class="ruby-value str">&quot;%.10f&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">irt_a</span>).<span class="ruby-identifier">to_f</span>)
+101:       <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:irt_b</span>], (<span class="ruby-value str">&quot;%.10f&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">irt_b</span>).<span class="ruby-identifier">to_f</span>)
+102:       <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:irt_c</span>], (<span class="ruby-value str">&quot;%.10f&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">irt_c</span>).<span class="ruby-identifier">to_f</span>)
+103:     <span class="ruby-keyword kw">end</span>
+104:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

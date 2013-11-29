@@ -1,0 +1,1216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: IRT</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">IRT</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/irt_rb.html">
+                irt.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="rect" coords="5,5,77,53"      href="IRT.html" alt="IRT" />
+</map>
+<img src="../dot/f_0.png" usemap="#map" border="0" alt="dot/f_0.png">
+    </div>
+
+    <div id="description">
+      <ul>
+<li>irt.rb
+
+</li>
+<li>Copyright (C) 2010 Embian Inc.
+
+<p>
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with This program. If not, see &lt;<a
+href="http://www.gnu.org/licenses">www.gnu.org/licenses</a>/&gt;.
+</p>
+</li>
+<li><a href="IRT.html">IRT</a> class includes methods to estimates item
+parameters and thetas of examinees based on Item Response Theory.
+
+</li>
+<li>Author: KyoungMo Yang(E-mail : mo@embian.com)
+
+</li>
+<li>Modified: 2010-11-05
+
+</li>
+<li>References: Irt_ruby module, <a href="IRTModel.html">IRTModel</a> class and
+<a href="IRTAlgorithm.html">IRTAlgorithm</a> class
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000021">_add_examinee</a>&nbsp;&nbsp;
+      <a href="#M000022">_add_examinees</a>&nbsp;&nbsp;
+      <a href="#M000025">_init_algorithm</a>&nbsp;&nbsp;
+      <a href="#M000026">_init_irt</a>&nbsp;&nbsp;
+      <a href="#M000023">_init_model</a>&nbsp;&nbsp;
+      <a href="#M000024">_init_prior_params</a>&nbsp;&nbsp;
+      <a href="#M000027">_to_format</a>&nbsp;&nbsp;
+      <a href="#M000014">em_iter_logs</a>&nbsp;&nbsp;
+      <a href="#M000018">em_logs</a>&nbsp;&nbsp;
+      <a href="#M000017">estimates_examinee_score</a>&nbsp;&nbsp;
+      <a href="#M000015">estimates_examinee_theta</a>&nbsp;&nbsp;
+      <a href="#M000013">estimates_item_params</a>&nbsp;&nbsp;
+      <a href="#M000012">get_item_params</a>&nbsp;&nbsp;
+      <a href="#M000016">load_estimated_item_params</a>&nbsp;&nbsp;
+      <a href="#M000011">new</a>&nbsp;&nbsp;
+      <a href="#M000019">release</a>&nbsp;&nbsp;
+      <a href="#M000020">to_s</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">test</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="#M000011" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(test, model=nil, algorithm=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Constructs an instance of IRT class.
+</pre>
+<p>
+*
+</p>
+<pre>
+ * [test] An instance of IRTExam class
+ * [model] An instance of IRTModel class. if do not passing this parameter, use default model.
+ * [algorithm] An instance of IRTAlgorithm class. if do not passing this parameter, use default algorithm.
+ * [inc] increment between adjacent scores
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * An instance of IRT class
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000011-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000011-source">
+<pre>
+    <span class="ruby-comment cmt"># File irt.rb, line 40</span>
+40:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">test</span>, <span class="ruby-identifier">model</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">algorithm</span>=<span class="ruby-keyword kw">nil</span>)
+41:     <span class="ruby-comment cmt"># init test</span>
+42:     <span class="ruby-ivar">@test</span> = <span class="ruby-identifier">test</span>
+43:     
+44:     <span class="ruby-comment cmt"># init default model</span>
+45:     <span class="ruby-identifier">_init_model</span>(<span class="ruby-identifier">model</span>)
+46:     <span class="ruby-comment cmt"># init default Expectation-Maximization and MLE, EAP algorithm</span>
+47:     <span class="ruby-identifier">_init_algorithm</span>(<span class="ruby-identifier">algorithm</span>)
+48:     <span class="ruby-comment cmt"># init  information of items, examinees and model</span>
+49:     <span class="ruby-identifier">_init_irt</span>
+50:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
+
+        <div class="method-heading">
+          <a href="#M000014" class="method-signature">
+          <span class="method-name">em_iter_logs</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000014-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000014-source">
+<pre>
+    <span class="ruby-comment cmt"># File irt.rb, line 68</span>
+68:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">em_iter_logs</span>
+69:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@algorithm</span>.<span class="ruby-identifier">em_iter_logs</span>
+70:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000018" class="method-detail">
+        <a name="M000018"></a>
+
+        <div class="method-heading">
+          <a href="#M000018" class="method-signature">
+          <span class="method-name">em_logs</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Returns result of EM iteration
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000018-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000018-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt.rb, line 153</span>
+153:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">em_logs</span>
+154:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@algorithm</span>.<span class="ruby-identifier">em_iter_logs</span>
+155:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000017" class="method-detail">
+        <a name="M000017"></a>
+
+        <div class="method-heading">
+          <a href="#M000017" class="method-signature">
+          <span class="method-name">estimates_examinee_score</span><span class="method-args">(score_per_items = false, item_nos = nil, examinees = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Estimates examinees' score
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [score_per_items] : if this paramter is true, calculates score of each items for examinees. Otherwise, calculates total score for each examinees.
+ * [item_nos] : if this parameter is specified, calculates score for the items. Otherwise, calculates score for all items
+ * [examinees] : if this parameter is specified, calculates socre for the examinees. Otherwise, calculates score for all examinees.
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000017-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000017-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt.rb, line 112</span>
+112:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">estimates_examinee_score</span>(<span class="ruby-identifier">score_per_items</span> = <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">item_nos</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">examinees</span> = <span class="ruby-keyword kw">nil</span>)
+113:     <span class="ruby-keyword kw">if</span>  <span class="ruby-identifier">examinees</span>
+114:       <span class="ruby-identifier">s_examinees</span> = <span class="ruby-identifier">examinees</span>
+115:     <span class="ruby-keyword kw">else</span>
+116:       <span class="ruby-identifier">s_examinees</span> = <span class="ruby-ivar">@test</span>.<span class="ruby-identifier">examinees</span>
+117:     <span class="ruby-keyword kw">end</span>
+118:     
+119:     <span class="ruby-identifier">s_examinees</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">examinee</span><span class="ruby-operator">|</span>
+120:       <span class="ruby-identifier">theta</span> = <span class="ruby-identifier">examinee</span>.<span class="ruby-identifier">theta</span>
+121:       <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">theta</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span>)
+122:         <span class="ruby-identifier">raise</span>(<span class="ruby-value str">&quot;Should be estimate score afeter estimates examinees' thetas&quot;</span>)
+123:       <span class="ruby-keyword kw">end</span>
+124:       
+125:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">item_nos</span>
+126:         <span class="ruby-identifier">score</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">test_characteristic_curve</span>([<span class="ruby-identifier">theta</span>], <span class="ruby-identifier">item_nos</span>)
+127:         <span class="ruby-identifier">responses</span> = <span class="ruby-identifier">examinee</span>.<span class="ruby-identifier">responses</span>[(<span class="ruby-identifier">item_nos</span>[<span class="ruby-value">0</span>]<span class="ruby-operator">-</span><span class="ruby-value">1</span>)<span class="ruby-operator">..</span>(<span class="ruby-identifier">item_nos</span>[<span class="ruby-identifier">item_nos</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>]<span class="ruby-operator">-</span><span class="ruby-value">1</span>)]
+128:       <span class="ruby-keyword kw">else</span>
+129:         <span class="ruby-identifier">score</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">test_characteristic_curve</span>([<span class="ruby-identifier">theta</span>])
+130:       <span class="ruby-keyword kw">end</span>
+131:       <span class="ruby-identifier">examinee</span>.<span class="ruby-identifier">score</span> = <span class="ruby-identifier">score</span>[<span class="ruby-value">0</span>]
+132:       
+133:       <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">score_per_items</span>)
+134:         <span class="ruby-comment cmt">#scores of each items for an examinee</span>
+135:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">item_nos</span>
+136:           <span class="ruby-identifier">item_nos</span> = (<span class="ruby-value">1</span><span class="ruby-operator">..</span>(<span class="ruby-ivar">@test</span>.<span class="ruby-identifier">number_of_items</span>)).<span class="ruby-identifier">to_a</span>
+137:         <span class="ruby-keyword kw">end</span>
+138:         <span class="ruby-identifier">item_nos</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">no</span><span class="ruby-operator">|</span>
+139:           <span class="ruby-identifier">examinee</span>.<span class="ruby-identifier">scores</span>[<span class="ruby-ivar">@test</span>.<span class="ruby-identifier">get_item_no</span>(<span class="ruby-identifier">no</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)] = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">test_characteristic_curve</span>([<span class="ruby-identifier">theta</span>], [<span class="ruby-identifier">no</span>])[<span class="ruby-value">0</span>]
+140:         <span class="ruby-keyword kw">end</span>
+141:       <span class="ruby-keyword kw">end</span>
+142:     <span class="ruby-keyword kw">end</span>
+143:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000015" class="method-detail">
+        <a name="M000015"></a>
+
+        <div class="method-heading">
+          <a href="#M000015" class="method-signature">
+          <span class="method-name">estimates_examinee_theta</span><span class="method-args">(examinees = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Estimates examinees' theta
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [examinees] : if do not passing this parameter, estimates thetas of all examinees
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000015-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000015-source">
+<pre>
+    <span class="ruby-comment cmt"># File irt.rb, line 80</span>
+80:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">estimates_examinee_theta</span>(<span class="ruby-identifier">examinees</span> = <span class="ruby-keyword kw">nil</span>)
+81:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">examinees</span>
+82:       <span class="ruby-ivar">@examinee_abilities</span> = <span class="ruby-ivar">@algorithm</span>.<span class="ruby-identifier">estimates_examinee_theta</span>(<span class="ruby-identifier">examinees</span>, <span class="ruby-ivar">@model</span>.<span class="ruby-identifier">range_of_ability</span>)
+83:     <span class="ruby-keyword kw">else</span>
+84:       <span class="ruby-ivar">@examinee_abilities</span> = <span class="ruby-ivar">@algorithm</span>.<span class="ruby-identifier">estimates_examinee_theta</span>(<span class="ruby-ivar">@test</span>.<span class="ruby-identifier">examinees</span>, <span class="ruby-ivar">@model</span>.<span class="ruby-identifier">range_of_ability</span>)  
+85:     <span class="ruby-keyword kw">end</span>
+86:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
+
+        <div class="method-heading">
+          <a href="#M000013" class="method-signature">
+          <span class="method-name">estimates_item_params</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Estimates item parameters(i.e., difficulty, discriment, guessing)
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000013-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000013-source">
+<pre>
+    <span class="ruby-comment cmt"># File irt.rb, line 64</span>
+64:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">estimates_item_params</span>
+65:     <span class="ruby-ivar">@algorithm</span>.<span class="ruby-identifier">estimates_item_params</span>(<span class="ruby-ivar">@test</span>.<span class="ruby-identifier">items</span>, <span class="ruby-ivar">@model</span>.<span class="ruby-identifier">use_dichotomous_model?</span>)
+66:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+          <a href="#M000012" class="method-signature">
+          <span class="method-name">get_item_params</span><span class="method-args">(item)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000012-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000012-source">
+<pre>
+    <span class="ruby-comment cmt"># File irt.rb, line 52</span>
+52:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_item_params</span>(<span class="ruby-identifier">item</span>)
+53:     <span class="ruby-identifier">item_get_params</span>
+54:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000016" class="method-detail">
+        <a name="M000016"></a>
+
+        <div class="method-heading">
+          <a href="#M000016" class="method-signature">
+          <span class="method-name">load_estimated_item_params</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Load estimated item parameters
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000016-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000016-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt.rb, line 96</span>
+ 96:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load_estimated_item_params</span>
+ 97:     <span class="ruby-ivar">@test</span>.<span class="ruby-identifier">items</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
+ 98:       <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">item_set_all_params</span>(<span class="ruby-identifier">item</span>.<span class="ruby-identifier">no</span>, [<span class="ruby-identifier">item</span>.<span class="ruby-identifier">irt_a</span>, <span class="ruby-identifier">item</span>.<span class="ruby-identifier">irt_b</span>, <span class="ruby-identifier">item</span>.<span class="ruby-identifier">irt_c</span>])
+ 99:     <span class="ruby-keyword kw">end</span>
+100:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000019" class="method-detail">
+        <a name="M000019"></a>
+
+        <div class="method-heading">
+          <a href="#M000019" class="method-signature">
+          <span class="method-name">release</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Release memory allocated in the _init_irt method
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000019-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000019-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt.rb, line 165</span>
+165:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">release</span>
+166:     <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">delete_items_dist</span>()
+167:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000020" class="method-detail">
+        <a name="M000020"></a>
+
+        <div class="method-heading">
+          <a href="#M000020" class="method-signature">
+          <span class="method-name">to_s</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Returns a string representing instance
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * [result] : a string representing instance
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000020-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000020-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt.rb, line 177</span>
+177:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
+178:     <span class="ruby-identifier">s</span> = <span class="ruby-node">&quot;Number of items: #{@test.number_of_items}\n&quot;</span>
+179:     <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;Number of latent variable points: #{@model.points_of_ability}\n&quot;</span>
+180:     <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;Number of examinee groups: #{@test.number_of_groups}\n&quot;</span>
+181:     <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;Number of examinees: #{@test.number_of_examinees}\n\n&quot;</span>
+182:     
+183:     <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;Default prior for a-parameters:\n&quot;</span>
+184:     <span class="ruby-identifier">params</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">get_default_prior_param</span>(<span class="ruby-value str">'a'</span>)
+185:     <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;beta a: %.3f b: %.3f lower limite: %.3f upper limit: %.3f\n&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">1</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">2</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">3</span>]]
+186:     <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;Default prior for b-parameters:\n&quot;</span>
+187:     <span class="ruby-identifier">params</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">get_default_prior_param</span>(<span class="ruby-value str">'b'</span>)
+188:     <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;beta a: %.3f b: %.3f lower limite: %.3f upper limit: %.3f\n&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">1</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">2</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">3</span>]]
+189:     <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;Default prior for c-parameters:\n&quot;</span>
+190:     <span class="ruby-identifier">params</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">get_default_prior_param</span>(<span class="ruby-value str">'c'</span>)
+191:     <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;beta a: %.3f b: %.3f lower limite: %.3f upper limit: %.3f\n&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">1</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">2</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">3</span>]]
+192:     <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;EM iterations\n&quot;</span>
+193:     <span class="ruby-identifier">logs</span> = <span class="ruby-identifier">em_iter_logs</span>
+194:     <span class="ruby-identifier">len</span> = <span class="ruby-identifier">logs</span>.<span class="ruby-identifier">size</span>
+195:     <span class="ruby-value">1</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-identifier">len</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+196:       <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;\t#{i}: %.6f %.6f\n&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">logs</span>[<span class="ruby-identifier">i</span>]
+197:     <span class="ruby-keyword kw">end</span>
+198:     
+199:     <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;\nItem Parameter Estimates (a, b, c)\n&quot;</span>
+200:     <span class="ruby-ivar">@test</span>.<span class="ruby-identifier">items</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
+201:       <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;#{item.no}\t%.6f\t%.6f\t%.6f\n&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">item</span>.<span class="ruby-identifier">irt_a</span>, <span class="ruby-identifier">item</span>.<span class="ruby-identifier">irt_b</span>, <span class="ruby-identifier">item</span>.<span class="ruby-identifier">irt_c</span>]
+202:     <span class="ruby-keyword kw">end</span>
+203:     
+204:     <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;\nDiscrete Latent Variable Distributions (point, prob)\n&quot;</span>
+205:     <span class="ruby-value">1</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-ivar">@test</span>.<span class="ruby-identifier">number_of_groups</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+206:       <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;Group #{i}\n&quot;</span>
+207:       <span class="ruby-identifier">points</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">dist_get_points</span>(<span class="ruby-identifier">i</span>)
+208:       <span class="ruby-identifier">probs</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">dist_get_probs</span>(<span class="ruby-identifier">i</span>)
+209:       <span class="ruby-identifier">idx</span> = <span class="ruby-value">0</span>
+210:       <span class="ruby-identifier">points</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">point</span><span class="ruby-operator">|</span>
+211:         <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;%.6f\t%.6f\n&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">point</span>, <span class="ruby-identifier">probs</span>[<span class="ruby-identifier">idx</span>]]
+212:         <span class="ruby-identifier">idx</span> = <span class="ruby-identifier">idx</span>.<span class="ruby-identifier">next</span>
+213:       <span class="ruby-keyword kw">end</span>
+214:     <span class="ruby-keyword kw">end</span>
+215:     
+216:     <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;\nMoments of Latent Variable Distributions\n&quot;</span>
+217:     <span class="ruby-value">1</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-ivar">@test</span>.<span class="ruby-identifier">number_of_groups</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+218:       <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;Group #{i}\n&quot;</span>
+219:       <span class="ruby-identifier">mean_sd</span> = <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">dist_mean_sd</span>(<span class="ruby-identifier">i</span>)
+220:       <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;Mean: %.6f\ts.d.: %.6f\n&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">mean_sd</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">mean_sd</span>[<span class="ruby-value">1</span>]]      
+221:     <span class="ruby-keyword kw">end</span>
+222:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">s</span>
+223:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Private Instance methods</h3>
+
+      <div id="method-M000021" class="method-detail">
+        <a name="M000021"></a>
+
+        <div class="method-heading">
+          <a href="#M000021" class="method-signature">
+          <span class="method-name">_add_examinee</span><span class="method-args">(an_examinee)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Adds examinee and the examinee's responses
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [examinees] : an instance of IRTExaminee
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000021-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000021-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt.rb, line 237</span>
+237:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_add_examinee</span>(<span class="ruby-identifier">an_examinee</span>)
+238:     <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">add_examinee</span>(<span class="ruby-identifier">an_examinee</span>.<span class="ruby-identifier">responses</span>, <span class="ruby-identifier">an_examinee</span>.<span class="ruby-identifier">group</span>)
+239:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000022" class="method-detail">
+        <a name="M000022"></a>
+
+        <div class="method-heading">
+          <a href="#M000022" class="method-signature">
+          <span class="method-name">_add_examinees</span><span class="method-args">(examinees)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Adds examinees and the responses of each examinee
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [examinees] : array of examinees
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000022-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000022-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt.rb, line 249</span>
+249:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_add_examinees</span>(<span class="ruby-identifier">examinees</span>)
+250:     <span class="ruby-identifier">no</span> = (<span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">examinees_count</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">to_i</span>
+251:     <span class="ruby-identifier">examinees</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">examinee</span><span class="ruby-operator">|</span>
+252:       <span class="ruby-identifier">examinee</span>.<span class="ruby-identifier">no</span> = <span class="ruby-identifier">no</span>
+253:       <span class="ruby-identifier">_add_examinee</span>(<span class="ruby-identifier">examinee</span>)
+254:       <span class="ruby-identifier">no</span> = <span class="ruby-identifier">no</span>.<span class="ruby-identifier">next</span>
+255:     <span class="ruby-keyword kw">end</span>
+256:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000025" class="method-detail">
+        <a name="M000025"></a>
+
+        <div class="method-heading">
+          <a href="#M000025" class="method-signature">
+          <span class="method-name">_init_algorithm</span><span class="method-args">(algorithm = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Initialize estimation algorithm options.
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [algorithm] : instance of IRTAlgorithm
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000025-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000025-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt.rb, line 308</span>
+308:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_init_algorithm</span>(<span class="ruby-identifier">algorithm</span> = <span class="ruby-keyword kw">nil</span>)
+309:     <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">algorithm</span>)
+310:       <span class="ruby-ivar">@algorithm</span> = <span class="ruby-identifier">algorithm</span>
+311:     <span class="ruby-keyword kw">else</span>
+312:       <span class="ruby-ivar">@algorithm</span> = <span class="ruby-constant">IRTAlgorithm</span>.<span class="ruby-identifier">new</span>
+313:     <span class="ruby-keyword kw">end</span>
+314:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000026" class="method-detail">
+        <a name="M000026"></a>
+
+        <div class="method-heading">
+          <a href="#M000026" class="method-signature">
+          <span class="method-name">_init_irt</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Initializes information of items, examinees and model
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000026-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000026-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt.rb, line 324</span>
+324:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_init_irt</span>
+325:     <span class="ruby-identifier">number_of_items</span> = <span class="ruby-ivar">@test</span>.<span class="ruby-identifier">number_of_items</span>
+326:     <span class="ruby-identifier">number_of_groups</span> = <span class="ruby-ivar">@test</span>.<span class="ruby-identifier">number_of_groups</span>
+327:     <span class="ruby-identifier">points_of_ability</span> = <span class="ruby-ivar">@model</span>.<span class="ruby-identifier">points_of_ability</span>
+328:     <span class="ruby-identifier">range_of_ability</span> = <span class="ruby-ivar">@model</span>.<span class="ruby-identifier">range_of_ability</span>
+329:     <span class="ruby-identifier">use_unique_points</span> = <span class="ruby-ivar">@model</span>.<span class="ruby-identifier">use_unique_points</span>
+330:     
+331:     <span class="ruby-comment cmt">#array of integers that indicate models for each item,</span>
+332:     <span class="ruby-comment cmt">#where 1 is dichotomous model, &gt;1 polytomous model. default is dichotomous (SEE : irt_ruby.h)</span>
+333:     <span class="ruby-keyword kw">if</span> (<span class="ruby-ivar">@model</span>.<span class="ruby-identifier">use_dichotomous_model?</span>)
+334:       <span class="ruby-comment cmt">#setting defaul dichotomous model</span>
+335:       <span class="ruby-comment cmt">#@models = [1, 1, 1, 1, 1, ... , number_of_items]</span>
+336:       <span class="ruby-identifier">models</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">number_of_items</span>, <span class="ruby-value">1</span>)
+337:     <span class="ruby-keyword kw">else</span>
+338:       <span class="ruby-comment cmt">#TODO : if you handles polytomous moudle, you should modify below code</span>
+339:       <span class="ruby-comment cmt"># the second parameter '2' means category of item </span>
+340:       <span class="ruby-identifier">models</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">number_of_items</span>, <span class="ruby-value">2</span>)
+341:     <span class="ruby-keyword kw">end</span>
+342:     <span class="ruby-comment cmt">#init information for items and latent variable(ability) distribution.</span>
+343:     <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">new_items_dist</span>(<span class="ruby-identifier">number_of_items</span>, <span class="ruby-identifier">points_of_ability</span>, <span class="ruby-identifier">number_of_groups</span>, <span class="ruby-identifier">models</span>, <span class="ruby-identifier">range_of_ability</span>, <span class="ruby-identifier">use_unique_points</span>)
+344:     
+345:     <span class="ruby-comment cmt">#init information for examinees</span>
+346:     <span class="ruby-identifier">_add_examinees</span>(<span class="ruby-ivar">@test</span>.<span class="ruby-identifier">examinees</span>)
+347:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000023" class="method-detail">
+        <a name="M000023"></a>
+
+        <div class="method-heading">
+          <a href="#M000023" class="method-signature">
+          <span class="method-name">_init_model</span><span class="method-args">(a_model = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Initializes model and options.
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [examinees] : array of examinees
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000023-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000023-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt.rb, line 266</span>
+266:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_init_model</span>(<span class="ruby-identifier">a_model</span> = <span class="ruby-keyword kw">nil</span>)
+267:     <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">a_model</span>)
+268:       <span class="ruby-ivar">@model</span> = <span class="ruby-identifier">a_model</span>
+269:     <span class="ruby-keyword kw">else</span>
+270:       <span class="ruby-ivar">@model</span> = <span class="ruby-constant">IRTModel</span>.<span class="ruby-identifier">new</span>
+271:     <span class="ruby-keyword kw">end</span>
+272:     <span class="ruby-keyword kw">if</span> (<span class="ruby-ivar">@model</span>.<span class="ruby-identifier">use_dichotomous_model?</span>)
+273:       <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">set_default_model_dichotomous</span>(<span class="ruby-ivar">@model</span>.<span class="ruby-identifier">model</span>)
+274:     <span class="ruby-keyword kw">else</span>
+275:       <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">set_default_model_polytomous</span>(<span class="ruby-ivar">@model</span>.<span class="ruby-identifier">model</span>)
+276:     <span class="ruby-keyword kw">end</span>
+277:     <span class="ruby-comment cmt"># _init_prior_params(@model)</span>
+278:     <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">set_default_D</span>(<span class="ruby-ivar">@model</span>.<span class="ruby-constant">D</span>)
+279:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000024" class="method-detail">
+        <a name="M000024"></a>
+
+        <div class="method-heading">
+          <a href="#M000024" class="method-signature">
+          <span class="method-name">_init_prior_params</span><span class="method-args">(model)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * Initializes prior item parameters.
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [model] : instance of IRTModel
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000024-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000024-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt.rb, line 289</span>
+289:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_init_prior_params</span>(<span class="ruby-identifier">model</span>)
+290:    <span class="ruby-identifier">param</span> = <span class="ruby-identifier">model</span>.<span class="ruby-identifier">prior_a</span>
+291:    <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">set_default_prior</span>(<span class="ruby-value str">&quot;a&quot;</span>, <span class="ruby-identifier">param</span>[<span class="ruby-identifier">:type</span>], <span class="ruby-identifier">param</span>[<span class="ruby-identifier">:value</span>])
+292:    
+293:    <span class="ruby-identifier">param</span> = <span class="ruby-identifier">model</span>.<span class="ruby-identifier">prior_b</span>
+294:    <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">set_default_prior</span>(<span class="ruby-value str">&quot;b&quot;</span>, <span class="ruby-identifier">param</span>[<span class="ruby-identifier">:type</span>], <span class="ruby-identifier">param</span>[<span class="ruby-identifier">:value</span>])
+295:    
+296:    <span class="ruby-identifier">param</span> = <span class="ruby-identifier">model</span>.<span class="ruby-identifier">prior_c</span>
+297:    <span class="ruby-constant">Irt_ruby</span>.<span class="ruby-identifier">set_default_prior</span>(<span class="ruby-value str">&quot;c&quot;</span>, <span class="ruby-identifier">param</span>[<span class="ruby-identifier">:type</span>], <span class="ruby-identifier">param</span>[<span class="ruby-identifier">:value</span>])
+298:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000027" class="method-detail">
+        <a name="M000027"></a>
+
+        <div class="method-heading">
+          <a href="#M000027" class="method-signature">
+          <span class="method-name">_to_format</span><span class="method-args">(value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Functionailities
+
+</li>
+</ul>
+<pre>
+ * number formating
+</pre>
+<ul>
+<li>Parameters
+
+</li>
+</ul>
+<pre>
+ * [value] : number
+</pre>
+<ul>
+<li>Return
+
+</li>
+</ul>
+<pre>
+ * [value] : formated float number
+</pre>
+<ul>
+<li>Note
+
+</li>
+</ul>
+<pre>
+ * N/A
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000027-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000027-source">
+<pre>
+     <span class="ruby-comment cmt"># File irt.rb, line 357</span>
+357:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_to_format</span>(<span class="ruby-identifier">value</span>)
+358:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>
+359:       <span class="ruby-keyword kw">return</span> (<span class="ruby-value str">&quot;%.5f&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_f</span>]).<span class="ruby-identifier">to_f</span>      
+360:     <span class="ruby-keyword kw">end</span>
+361:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">value</span>
+362:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
