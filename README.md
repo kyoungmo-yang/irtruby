@@ -48,14 +48,12 @@ The files and directories in this project are:
 	
  3) Generates "Makefile"
 
-    ```bash
     cd {IRT_RUBY_HOME}/lib
     ruby extconf.rb --with-etirm-dir={IRT_RUBY_HOME}/lib/include/etirm/src \\
                     --with-scppnt-dir={IRT_RUBY_HOME}/lib/include/scppnt/src/include \\
                     --with-uncmin-dir={IRT_RUBY_HOME}/lib/include/uncmin/src/include \\
                     --with-boost-dir={IRT_RUBY_HOME}/lib/include/boost_1_45_0
-    ```
     
  4) Compile
     
-    `make`
+    make
