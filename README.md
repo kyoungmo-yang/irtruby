@@ -25,7 +25,8 @@ The files and directories in this project are:
 							   for connecting C++ classes with IRT language.
 
 # Install
-1. Building the IRTRuby Library
+
+
  1) Install SWIG (http://www.swig.org/)
 ```
     sudo apt-get install swig
